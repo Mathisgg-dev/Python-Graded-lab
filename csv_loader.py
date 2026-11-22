@@ -19,14 +19,14 @@ def parse_files(paths: list[str], airports: set[str]) -> tuple[list[dict], list[
     """
     records = []
     errors = []
-    seen = set()  # (flight_id, departure_datetime) of the valid rows already kept
+    seen = set()  
 
     for path in paths:
         file_name = os.path.basename(path)
         with open(path, "r", encoding="utf-8") as file:
             for line_number, line in enumerate(file, start=1):
                 text = line.strip()
-                # line 1 is the header; blank and comment lines are skipped silently
+                
                 if line_number == 1 or text == "" or text.startswith("#"):
                     continue
 

@@ -47,21 +47,18 @@ def validate_row(fields: list[str], airports: set[str]) -> str | None:
     FIRST failing check (checks 1-11 in the specification, in order).
     Does not check for duplicates.
     """
-    # 1. exactly 6 fields
+ 
     if len(fields) != 6:
         return "WRONG_FIELD_COUNT"
 
     flight_id, origin, destination, departure, arrival, price = [f.strip() for f in fields]
 
-    # 2. no empty field
     if "" in [flight_id, origin, destination, departure, arrival, price]:
         return "MISSING_FIELD"
 
-    # 3. flight id: 2-8 ASCII letters or digits
     if not re.fullmatch(r"[A-Za-z0-9]{2,8}", flight_id):
         return "INVALID_FLIGHT_ID"
 
-    # 4-6. airports
     if not is_airport_code(origin, airports):
         return "INVALID_ORIGIN"
     if not is_airport_code(destination, airports):
@@ -69,7 +66,6 @@ def validate_row(fields: list[str], airports: set[str]) -> str | None:
     if origin == destination:
         return "SAME_ORIGIN_DESTINATION"
 
-    # 7-9. dates
     departure_time = parse_datetime(departure)
     if departure_time is None:
         return "INVALID_DEPARTURE"
@@ -79,7 +75,6 @@ def validate_row(fields: list[str], airports: set[str]) -> str | None:
     if arrival_time <= departure_time:
         return "ARRIVAL_NOT_AFTER_DEPARTURE"
 
-    # 10-11. price
     try:
         price_value = float(price)
     except ValueError:

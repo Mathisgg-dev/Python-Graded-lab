@@ -99,7 +99,7 @@ def main(argv: list[str] | None = None) -> int:
     """
     try:
         args = get_arguments(argv)
-    except SystemExit as error:  # argparse: usage error (2) or -h (0)
+    except SystemExit as error:  
         return error.code
 
     logger = logging.getLogger("flight_parser")
@@ -133,7 +133,7 @@ def main(argv: list[str] | None = None) -> int:
             write_json(os.path.join(args.r, file_name), response)
 
         return 0
-    except (OSError, ValueError) as error:  # missing file, bad JSON, bad shape...
+    except (OSError, ValueError) as error:  
         print(f"Error: {error}", file=sys.stderr)
         return 1
     finally:
