@@ -34,7 +34,7 @@ def is_valid_query(query) -> bool:
         elif key == "limit":
             if not isinstance(value, int) or isinstance(value, bool) or value < 0:
                 return False
-        else:  # unknown key
+        else: 
             return False
     return True
 
@@ -72,7 +72,7 @@ def run_query(db: list[dict], query: dict) -> dict:
 
     if "sort_by" in query:
         descending = query.get("order", "asc") == "desc"
-        # sorted() is stable: equal values keep database order, also with reverse=True
+        
         matches = sorted(matches, key=lambda flight: flight[query["sort_by"]], reverse=descending)
 
     if "limit" in query:
