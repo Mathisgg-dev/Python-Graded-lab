@@ -14,7 +14,7 @@ from csv_loader import parse_files
 from query import run_queries
 from validator import load_airports
 
-# TODO: fill in your details: plain ASCII, no spaces or underscores.
+
 STUDENT_ID = "260ADB198"
 FIRST_NAME = "Mathis"
 LAST_NAME = "GuillinGoutte"
